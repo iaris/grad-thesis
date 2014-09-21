@@ -3,7 +3,7 @@ grad-thesis
 
 something about graduation thesis
 
-平成22年度都道府県別大学進学率のヒストグラム
+平成22年度都道府県別大学進学率の棒グラフ
 
 <img src="univ_rate_all.png" alt="univrate" width="400"/>
 
