@@ -1,41 +1,41 @@
 # -*- coding: utf-8 -*-
 
 """
-Excelƒtƒ@ƒCƒ‹(.xls)‚ğcsvŒ`®‚É•ÏŠ·‚µ‚Ä“Ç‚İ‚İAU•z}EƒqƒXƒgƒOƒ‰ƒ€‚ğì¬A
-‚Ü‚½‚Í‰ñ‹A•ªÍ‚ğs‚¤‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
-ƒf[ƒ^Œ^‚ÍDataFrameA‚Ü‚½‚ÍSeries‚É‚È‚é
+Excelãƒ•ã‚¡ã‚¤ãƒ«(.xls)ã‚’csvå½¢å¼ã«å¤‰æ›ã—ã¦èª­ã¿è¾¼ã¿ã€æ•£å¸ƒå›³ãƒ»ã‚°ãƒ©ãƒ•ã‚’ä½œæˆã€
+ã¾ãŸã¯å›å¸°åˆ†æã‚’è¡Œã†ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+ãƒ‡ãƒ¼ã‚¿å‹ã¯DataFrameã€ã¾ãŸã¯Seriesã«ãªã‚‹
 """
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# csvƒtƒ@ƒCƒ‹‚ğDataFrameŒ^‚É“Ç‚İ‚İAindex‚ğ•ÏX
+# csvãƒ•ã‚¡ã‚¤ãƒ«ã‚’DataFrameå‹ã«èª­ã¿è¾¼ã¿ã€indexã‚’å¤‰æ›´
 course_after_hischool = pd.read_csv('H22_univ.csv')
 A = course_after_hischool
 prefectures = A.pop('prefecture')
 A.index = prefectures
 
-#V‚µ‚¢Series‚ğì¬A’Ç‰Á
+#æ–°ã—ã„Seriesã‚’ä½œæˆã€è¿½åŠ 
 B = A['to_univ']
 C = A['to_college']
 D = B + C
 A['learn'] = D
 
-operations = 'hist'
+operations = 'graph'
 
-#•À‚Ñ‘Ö‚¦AƒqƒXƒgƒOƒ‰ƒ€‚Ìì¬
-if operations == 'hist':
-    B = A.sort_index(by = 'learn', ascending = False)
-    B['learn'].plot()
+#ä¸¦ã³æ›¿ãˆã€ã‚°ãƒ©ãƒ•ã®ä½œæˆ
+if operations == 'graph':
+    B = A.sort_index(by = 'to_univ', ascending = False)
+    B['to_univ'].plot()
     plt.show()
 
-#U•z}‚Ìì¬
+#æ•£å¸ƒå›³ã®ä½œæˆ
 if operations == 'plot':
     pd.tools.plotting.scatter_plot(A, 'learn', 'univ_per_mill', color='green')
     plt.show()
 
-#‰ñ‹A•ªÍ‚ğs‚¤
+#å›å¸°åˆ†æã‚’è¡Œã†
 if operations == 'regress':
     regression = pd.ols(y=A['learn'], x=A['univ_per_mill'], intercept = True)
     print(regression)
