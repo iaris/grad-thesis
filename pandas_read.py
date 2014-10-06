@@ -11,16 +11,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # csvファイルをDataFrame型に読み込み、indexを変更
-course_after_hischool = pd.read_csv('H22_univ.csv')
-A = course_after_hischool
+A = pd.read_csv('H22_univ.csv')
 prefectures = A.pop('prefecture')
 A.index = prefectures
 
+"""
 #新しいSeriesを作成、追加
 B = A['to_univ']
 C = A['to_college']
 D = B + C
 A['learn'] = D
+"""
 
 operations = 'graph'
 
@@ -37,5 +38,6 @@ if operations == 'plot':
 
 #回帰分析を行う
 if operations == 'regress':
-    regression = pd.ols(y=A['learn'], x=A['univ_per_mill'], intercept = True)
+    ind_var = ['univ_per_mil', 'rate']
+    regression = pd.ols(y=A['learn'], x=A[ind_var], intercept = True)
     print(regression)
