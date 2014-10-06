@@ -6,6 +6,8 @@ Excelファイル(.xls)をcsv形式に変換して読み込み、散布図・グ
 データ型はDataFrame、またはSeriesになる
 """
 
+%matplotlib inline
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
