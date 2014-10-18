@@ -10,3 +10,7 @@ something about graduation thesis
 平成22年度大学進学率と人口百万人当たり大学数の散布図
 
 <img src="plot_univrate_univpermil.png" alt="regress1" width="400"/>
+
+平成22年度大学進学率と高校生の県外就職率の散布図
+
+<img src="plot_univrate_workoutrate.png" alt="regress2" width="400"/>

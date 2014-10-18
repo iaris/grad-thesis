@@ -7,23 +7,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-Excelƒtƒ@ƒCƒ‹(.xls)‚ğcsvŒ`®‚É•ÏŠ·‚µ‚Ä“Ç‚İ‚İAU•z}EƒqƒXƒgƒOƒ‰ƒ€‚ğì¬A
-‚Ü‚½‚Í‰ñ‹A•ªÍ‚ğs‚¤‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
-ƒf[ƒ^Œ^‚ÍDataFrameA‚Ü‚½‚ÍSeries‚É‚È‚é
+Excelãƒ•ã‚¡ã‚¤ãƒ«(.xls)ã‚’csvå½¢å¼ã«å¤‰æ›ã—ã¦èª­ã¿è¾¼ã¿ã€æ•£å¸ƒå›³ãƒ»ã‚°ãƒ©ãƒ•ã‚’ä½œæˆã€
+ã¾ãŸã¯å›å¸°åˆ†æã‚’è¡Œã†ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+ãƒ‡ãƒ¼ã‚¿å‹ã¯DataFrameã€ã¾ãŸã¯Seriesã«ãªã‚‹
 """
 
+<<<<<<< HEAD
 # csvƒtƒ@ƒCƒ‹‚ğDataFrameŒ^‚É“Ç‚İ‚İAindex‚ğ•ÏX
 course_after_hischool = pd.read_csv('H22_univ.csv')
 A = course_after_hischool
+=======
+%matplotlib inline
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# csvãƒ•ã‚¡ã‚¤ãƒ«ã‚’DataFrameå‹ã«èª­ã¿è¾¼ã¿ã€indexã‚’å¤‰æ›´
+A = pd.read_csv('H22_univ.csv')
+>>>>>>> 3a258e39c637be72f5ee9adfd6aaf5270513d645
 prefectures = A.pop('prefecture')
 A.index = prefectures
 
-#V‚µ‚¢Series‚ğì¬A’Ç‰Á
+"""
+#æ–°ã—ã„Seriesã‚’ä½œæˆã€è¿½åŠ 
 B = A['to_univ']
 C = A['to_college']
 D = B + C
 A['learn'] = D
+"""
 
+<<<<<<< HEAD
 
 operations = 'bar'
 
@@ -31,15 +45,29 @@ operations = 'bar'
 if operations == 'bar':
     B = A.sort_index(by = 'learn', ascending = False)
     B['to_univ'].plot(kind = 'bar')
+=======
+operations = 'graph'
+
+#ä¸¦ã³æ›¿ãˆã€ã‚°ãƒ©ãƒ•ã®ä½œæˆ
+if operations == 'graph':
+    B = A.sort_index(by = 'to_univ', ascending = False)
+    B['to_univ'].plot()
+>>>>>>> 3a258e39c637be72f5ee9adfd6aaf5270513d645
     plt.show()
 
-#U•z}‚Ìì¬
+#æ•£å¸ƒå›³ã®ä½œæˆ
 if operations == 'plot':
     pd.tools.plotting.scatter_plot(A, 'learn', 'upm', color='green')
     plt.show()
 
-#‰ñ‹A•ªÍ‚ğs‚¤
+#å›å¸°åˆ†æã‚’è¡Œã†
 if operations == 'regress':
+<<<<<<< HEAD
     vals = ['upm', 'bcdum', 'dsmf', 'rowo', 'phi']
     regression = pd.ols(y=A['learn'], x=A[vals], intercept = True)
     print(regression)
+=======
+    ind_var = ['univ_per_mil', 'rate']
+    regression = pd.ols(y=A['learn'], x=A[ind_var], intercept = True)
+    print(regression)
+>>>>>>> 3a258e39c637be72f5ee9adfd6aaf5270513d645
