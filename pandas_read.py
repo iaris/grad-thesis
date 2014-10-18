@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
+%matplotlib inline
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
 """
 Excelファイル(.xls)をcsv形式に変換して読み込み、散布図・ヒストグラムを作成、
 または回帰分析を行うためのプログラム
 データ型はDataFrame、またはSeriesになる
 """
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 # csvファイルをDataFrame型に読み込み、indexを変更
 course_after_hischool = pd.read_csv('H22_univ.csv')
@@ -22,20 +24,22 @@ C = A['to_college']
 D = B + C
 A['learn'] = D
 
-operations = 'hist'
 
-#並び替え、ヒストグラムの作成
-if operations == 'hist':
+operations = 'bar'
+
+#並び替え、棒グラフの作成
+if operations == 'bar':
     B = A.sort_index(by = 'learn', ascending = False)
-    B['learn'].plot()
+    B['to_univ'].plot(kind = 'bar')
     plt.show()
 
 #散布図の作成
 if operations == 'plot':
-    pd.tools.plotting.scatter_plot(A, 'learn', 'univ_per_mill', color='green')
+    pd.tools.plotting.scatter_plot(A, 'learn', 'upm', color='green')
     plt.show()
 
 #回帰分析を行う
 if operations == 'regress':
-    regression = pd.ols(y=A['learn'], x=A['univ_per_mill'], intercept = True)
+    vals = ['upm', 'bcdum', 'dsmf', 'rowo', 'phi']
+    regression = pd.ols(y=A['learn'], x=A[vals], intercept = True)
     print(regression)
